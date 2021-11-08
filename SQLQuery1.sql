@@ -63,16 +63,16 @@ RIGHT JOIN Account A
 WHERE A.AccountID = '110' AND LR.PaymentNumber = '1';
 
 -- 11
--- "User Story" (Display all loans with balances less than $2000 as of October 1st 2021, only showing loans made by a specific account) 
+-- "User Story" (Display account ID, loan ID, loan amount, and payment date for all loans with balances less than $2000 between April 2nd 2021 and December 1st 2021. Group columns by PaymentDate, LoanAmount, AccountID, LoandID )
 
 USE SKS;
 
-SELECT LR.LoanID, LR.LoanAmount
+-- Needs editing, currently outputs nothing
+SELECT AL.AccountID, LR.LoanID, LR.LoanAmount, LR.PaymentDate
 FROM LoanRecord LR JOIN AccountLoan AL
 	ON LR.LoanID = AL.LoanID
-WHERE LR.LoanAmount < 2000 AND PaymentDate <= '2021-10-01'
-GROUP BY PaymentDate
-HAVING AL.AccountID = 1756788;
+WHERE (LR.PaymentDate BETWEEN '2021-04-01 23:59:59:59' AND '2021-12-01 00:00:00:01') AND LR.LoanAmount <= 2000
+GROUP BY LR.PaymentDate, LR.LoanAmount, AL.AccountID, LR.LoanID;
 
 
 -- 12
