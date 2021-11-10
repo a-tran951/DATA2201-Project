@@ -57,6 +57,25 @@ RIGHT JOIN Account A
 	ON AL.AccountID = A.AccountID
 WHERE A.AccountID = '110' AND LR.PaymentNumber = '1';
 
+
+-- 8
+-- "User Story" (Update cheque record id, update account to match what their account is because 
+customer has called and explained they deposited $1980 to their chequing account on Sept 2nd, 
+however they received their statement and it is not showing up.  To correct this search for that payment on that date, 
+find out which account the payment was made to and update the payment to ensure it is reflected in the correct account.) 
+
+
+-- 9
+--"User Story" (You are an assistant to a manager.  The manager has asked you to create 
+a list of all employees who have worked for the bank in the province of Alberta for 
+over 5 years as of January 1, 2022, (current date compared with hired date) so that the 
+
+
+-- 10
+--"User Story" (Update any employee�s payrate after they�ve been with the company 
+for a certain (ex. 10years) amount of time)
+
+
 -- 11
 -- "User Story" (Display all loans with balances less than $2000 between October 2nd 2021 and December 1st 2021, only showing loans made by a specific account) 
 -- 
