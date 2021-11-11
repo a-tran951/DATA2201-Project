@@ -58,11 +58,26 @@ RIGHT JOIN Account A
 WHERE A.AccountID = '110' AND LR.PaymentNumber = '1';
 
 
+
 -- 8
--- "User Story" (Update cheque record id, update account to match what their account is because 
-customer has called and explained they deposited $1980 to their chequing account on Sept 2nd, 
-however they received their statement and it is not showing up.  To correct this search for that payment on that date, 
-find out which account the payment was made to and update the payment to ensure it is reflected in the correct account.) 
+/** "User Story" (Update cheque record id, update account to match what their account is because 
+customer has called and explained they deposited $13142.00 to their account (AccountID 121) on May 18, 2021, 
+however they have now examined their account statement for May and their payment is not listed.  
+To correct this search payments on that date in that amount, to determine which account the payment was deposited into.  
+The employee will need to ensure the ChequeRecordID table is updated to show the payment is reflected in the correct account) **/
+
+USE SKS
+UPDATE ChequeRecord
+SET 
+    AccountID = 121
+WHERE
+    ChequeDate='2021-05-18'
+	AND Amount = 13142.00
+
+-- Test statement 
+USE SKS
+SELECT * FROM ChequeRecord WHERE ChequeDate='2021-05-18';
+
 
 
 -- 9
