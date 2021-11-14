@@ -6,7 +6,7 @@
 -- "User Story" (Display all current managers who have hired other current employees) 
 -- SUBQUERY in a WHERE statement
 
-/*USE SKS;
+USE SKS;
 
 SELECT EmployeeID, FirstName, LastName
 FROM Employee
@@ -19,10 +19,9 @@ WHERE EmployeeID IN (SELECT ManagerID FROM Employee);
 
 USE SKS;
 
-SELECT E.EmployeeID, E.FirstName, E.LastName
-FROM Employee E LEFT JOIN EmployeeLocation EL
-	ON E.EmployeeID = EL.EmployeeID
-WHERE (E.HireDate BETWEEN '2020-06-01' AND '2020-10-04');
+SELECT EmployeeID, FirstName, LastName
+FROM Employee
+WHERE WorkLocation = 'Downtown' AND EmployeePos <> 'Manager';
 
 -- 4
 
@@ -81,29 +80,34 @@ SELECT * FROM ChequeRecord WHERE ChequeDate='2021-05-18';
 
 
 -- 9
---"User Story" (You are an assistant to a manager.  The manager has asked you to create 
+/* "User Story" (You are an assistant to a manager.  The manager has asked you to create 
 a list of all employees who have worked for the bank in the province of Alberta for 
-over 5 years as of January 1, 2022, (current date compared with hired date) so that the 
+over 5 years as of January 1, 2022, (current date compared with hired date) so that the */
 
 
 -- 10
---"User Story" (Update any employee�s payrate after they�ve been with the company 
-for a certain (ex. 10years) amount of time)
+/* "User Story" (Update any employee�s payrate after they�ve been with the company 
+for a certain (ex. 10years) amount of time) */
 
 
 -- 11
--- "User Story" (Display all loans with balances less than $2000 between October 2nd 2021 and December 1st 2021, only showing loans made by a specific account) 
--- 
+/* "User Story" (Display all loans with balances less than $2000 between October 2nd 2021 and December 1st 2021, only showing loans made by a specific account) 
+*/
 
 USE SKS;
 
+SELECT 
+FROM Loans JOIN LoanPayments
+
+
+/*
 -- Needs editing, currently outputs nothing
 SELECT AL.AccountID, LR.LoanID, LR.LoanAmount, LR.PaymentDate
 FROM LoanRecord LR JOIN AccountLoan AL
 	ON LR.LoanID = AL.LoanID
 WHERE (LR.PaymentDate BETWEEN '2021-10-01 23:59:59:59' AND '2021-12-01 00:00:00:01') AND LR.LoanAmount <= 2000
 GROUP BY AL.AccountID, LR.LoanID, LR.LoanAmount, LR.PaymentDate;
-
+*/
 
 -- 12
 -- "User Story"
@@ -112,4 +116,4 @@ USE SKS;
 
 
 
-*/
+

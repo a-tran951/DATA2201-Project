@@ -263,3 +263,53 @@ INSERT LoanPayments (LoanID, BranchID, CustomerID, Amount, PaymentDate) VALUES
 	(101, 1, 214, $8030.00, '2021-11-15'),
 	(103, 4, 208, $714.35, '2021-11-15')
 GO
+
+
+/** Adding Foreign Key constraints to Employee Table **/
+ALTER TABLE Employee
+ADD CONSTRAINT FK_Branch_Employee
+FOREIGN KEY (BranchID) REFERENCES Branch(BranchID);
+
+
+/** Adding Foreign Key constraints to Loans Table **/
+ALTER TABLE Loans
+ADD CONSTRAINT FK_Branch_Loans
+FOREIGN KEY (BranchID) REFERENCES Branch(BranchID);
+
+ALTER TABLE Loans
+ADD CONSTRAINT FK_Customer_Loans
+FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID);
+
+
+/** Adding Foreign Key constraints to LoanPayments Table **/
+ALTER TABLE LoanPayments
+ADD CONSTRAINT FK_Branch_LoanPayments
+FOREIGN KEY (BranchID) REFERENCES Branch(BranchID);
+
+ALTER TABLE LoanPayments
+ADD CONSTRAINT FK_Customer_LoanPayments
+FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID);
+
+
+/** Adding Foreign Key constraints to Account Table **/
+ALTER TABLE Account
+ADD CONSTRAINT FK_Branch_Account
+FOREIGN KEY (BranchID) REFERENCES Branch(BranchID);
+
+ALTER TABLE Account
+ADD CONSTRAINT FK_Customer_Account
+FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID);
+
+
+/** Adding Foreign Key constraints to AccountTransactions Table **/
+ALTER TABLE AccountTransactions
+ADD CONSTRAINT FK_Branch_AccountTransactions
+FOREIGN KEY (BranchID) REFERENCES Branch(BranchID);
+
+ALTER TABLE AccountTransactions
+ADD CONSTRAINT FK_Customer_AccountTransactions
+FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID);
+
+ALTER TABLE AccountTransactions
+ADD CONSTRAINT FK_Account_AccountTransactions
+FOREIGN KEY (AccountID) REFERENCES Account(AccountID);
