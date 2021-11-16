@@ -79,10 +79,17 @@ SELECT * FROM ChequeRecord WHERE ChequeDate='2021-05-18';
 
 
 
+
 -- 9
-/* "User Story" (You are an assistant to a manager.  The manager has asked you to create 
-a list of all employees who have worked for the bank in the province of Alberta for 
-over 5 years as of January 1, 2022, (current date compared with hired date) so that the */
+/**  "User Story" (You are an assistant to a bank manager.  The manager has asked you to create 
+a list of all employees including their address, who have worked for the bank in the province of Alberta for 
+over 5 years as of January 1, 2022, so that the bank can mail to them a 5 years of service award cheque.  **/
+
+USE SKS;
+
+SELECT FirstName, LastName, HomeAddress
+FROM Employee
+WHERE HireDate>'2017-01-01';
 
 
 -- 10
