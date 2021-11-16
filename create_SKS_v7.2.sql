@@ -40,7 +40,7 @@ CREATE TABLE Employee(
 	HireDate VARCHAR (50),
 	ManagerID VARCHAR (5),
 	PayRate MONEY,
-	BranchID VARCHAR (10), 
+	BranchID INT, 
 	WorkLocation VARCHAR (50),
 	LocationType VARCHAR (10) 
 	)
@@ -135,24 +135,24 @@ GO
 
 /**  Adding records to the Employee table  **/ 
 INSERT Employee (EmployeePos, FirstName, LastName, HomeAddress, HireDate, ManagerID, PayRate, BranchID, WorkLocation, LocationType) VALUES
-	('Banker', 'Robert', 'Parr', '212 Mount Royal Drive SW Calgary', '2010-03-05', 111, $21.00, 107, 'Downtown', 'Branch'),
-	('Loan Officer', 'Sara', 'Levin', '2101 16 Avenue NW Calgary', '2009-10-03', 111, $24.00, 116, 'East Village', 'Branch'),
-	('Banker', 'Jacob', 'Tremblay', '2017 Abbottsfield Road NW Edmonton', '2019-12-21', 114, $21.00, 113, 'Shaganappi', 'Branch'),
-	('Banker', 'Yun', 'Chow', '812 Riverbend Circle SE Calgary', '2018-08-30', 111, $21.00, 108, 'Bowness', 'Branch'),
-	('Loan Officer', 'Alex', 'Armstrong', '432 Martindale Avenue NE Calgary', '2020-12-07', 118, $24.00, 112, 'Coventry Hills', 'Branch'),
-	('Banker', 'Helen', 'Parr', '212 Mount Royal Drive SW Calgary',  '2017-10-10', 114, $21.00, 101, 'Cranston', 'Branch'), 
-	('Banker', 'Edward', 'Elric', '123 45 Street SW Calgary', '2018-09-22', 111, $21.00, 111, 'Valley Ridge', 'Branch'),
-	('Banker', 'Mary', 'Turner', '1200 Cranston Blvd SW Calgary', '2001-05-26', 114, $21.00, 110, 'Shawnessy', 'Branch'),
-	('Banker', 'Sofia', 'Torres', '645 Dover Street SW Calgary', '2015-02-11', 118, $21.00, 115, 'Panorama Hills', 'Branch'),
-	('Banker', 'Ahmed', 'Chavan', '601 Coach Hill Street SW Calgary', '2005-05-05', 118, $21.00, 107, 'Downtown', 'Branch'),
-	('Manager', 'Bradley', 'King', '1402 Bowness Street NW Calgary', '2003-04-01', NULL, $32.00, NULL, 'Beltline', 'Office'),
-	('Banker', 'Francine', 'Smith', '291 Windemere Crescent SW Calgary', '2015-01-28', 111, $21.00, 111, 'Valley Ridge', 'Branch'),
-	('Banker', 'Alphonse', 'Elric', '123 45 Street SW Calgary', '2019-07-16', 118, $21.00, 104, 'Sunridge', 'Branch'),
-	('Manager', 'Walter', 'White', '3828 Piermont Drive NE Calgary', '2016-11-20', NULL, $32.00, NULL, 'Silverado', 'Office'),	
-	('Loan Officer', 'Olivia', 'Harper', '6078 Cloverdale Avenue NW Edmonton','2004-09-18', 114, $24.00, '106', 'Pleasantview', 'Branch'),
-	('Banker', 'Fatima', 'Montes', '5456 Heritage Valley Street SW Edmonton', '2008-07-31', 114, $21.00, 103, 'Westmount', 'Branch'),
-	('Banker', 'Nora', 'Cooper', '400 Abbeydale Lane NE Calgary', '2017-12-30', 111, $21.00, 109, 'Inglewood', 'Branch'),
-	('Manager', 'Edna', 'Mode', '1920 Centre Street NW Calgary', '2001-11-07', NULL, $32.00, 112, 'Coventry Hills', 'Branch')
+	('Banker', 'Robert', 'Parr', '212 Mount Royal Drive SW Calgary', '2010-03-05', 111, $21.00, 1, 'Downtown', 'Branch'),
+	('Loan Officer', 'Sara', 'Levin', '2101 16 Avenue NW Calgary', '2009-10-03', 111, $24.00, 2, 'East Village', 'Branch'),
+	('Banker', 'Jacob', 'Tremblay', '2017 Abbottsfield Road NW Edmonton', '2019-12-21', 114, $21.00, 3, 'Shaganappi', 'Branch'),
+	('Banker', 'Yun', 'Chow', '812 Riverbend Circle SE Calgary', '2018-08-30', 111, $21.00, 4, 'Bowness', 'Branch'),
+	('Loan Officer', 'Alex', 'Armstrong', '432 Martindale Avenue NE Calgary', '2020-12-07', 118, $24.00, 5, 'Coventry Hills', 'Branch'),
+	('Banker', 'Helen', 'Parr', '212 Mount Royal Drive SW Calgary',  '2017-10-10', 114, $21.00, 6, 'Cranston', 'Branch'), 
+	('Banker', 'Edward', 'Elric', '123 45 Street SW Calgary', '2018-09-22', 111, $21.00, 7, 'Valley Ridge', 'Branch'),
+	('Banker', 'Mary', 'Turner', '1200 Cranston Blvd SW Calgary', '2001-05-26', 114, $21.00, 8, 'Shawnessy', 'Branch'),
+	('Banker', 'Sofia', 'Torres', '645 Dover Street SW Calgary', '2015-02-11', 118, $21.00, 9, 'Panorama Hills', 'Branch'),
+	('Banker', 'Ahmed', 'Chavan', '601 Coach Hill Street SW Calgary', '2005-05-05', 118, $21.00, 10, 'Downtown', 'Branch'),
+	('Manager', 'Bradley', 'King', '1402 Bowness Street NW Calgary', '2003-04-01', NULL, $32.00, 11, 'Beltline', 'Office'),
+	('Banker', 'Francine', 'Smith', '291 Windemere Crescent SW Calgary', '2015-01-28', 111, $21.00, 12, 'Valley Ridge', 'Branch'),
+	('Banker', 'Alphonse', 'Elric', '123 45 Street SW Calgary', '2019-07-16', 118, $21.00, 13, 'Sunridge', 'Branch'),
+	('Manager', 'Walter', 'White', '3828 Piermont Drive NE Calgary', '2016-11-20', NULL, $32.00, 14, 'Silverado', 'Office'),	
+	('Loan Officer', 'Olivia', 'Harper', '6078 Cloverdale Avenue NW Edmonton','2004-09-18', 114, $24.00, 15, 'Pleasantview', 'Branch'),
+	('Banker', 'Fatima', 'Montes', '5456 Heritage Valley Street SW Edmonton', '2008-07-31', 114, $21.00, 16, 'Westmount', 'Branch'),
+	('Banker', 'Nora', 'Cooper', '400 Abbeydale Lane NE Calgary', '2017-12-30', 111, $21.00, 12, 'Inglewood', 'Branch'),
+	('Manager', 'Edna', 'Mode', '1920 Centre Street NW Calgary', '2001-11-07', NULL, $32.00, 11, 'Coventry Hills', 'Branch')
 GO
 
 
@@ -200,10 +200,10 @@ INSERT Account (AccountID, CustomerID, AccountType, Balance, BranchID, InterestR
 	(4933919, 214, 'Chequing', $20300.16, 5, NULL, '2021-10-15', '2003-11-13'),
 	(294920, 215, 'Chequing', $3401.05, 2, NULL, '2021-09-08', '2018-05-19'),
 	(304020, 216, 'Saving', $5195.55, 8, 0.01, '2021-11-05', '2019-07-25'),
-	(2040501, 217, 'Saving', $481.30, 9, 0.01, '2021-04-03', '2001-01-29'),
-	(4995999, 218, 'Chequing', $99.50, 3, NULL, '2021-10-31', '2015-07-26'),
-	(1412494, 219, 'Chequing', $5010.33, 4, NULL, '2021-11-15', '2020-03-04'),
-	(5929592, 220, 'Chequing', $69.40, 5, NULL, '2021-11-01', '2021-08-16')
+	(2040501, 216, 'Saving', $481.30, 9, 0.01, '2021-04-03', '2001-01-29'),
+	(4995999, 213, 'Chequing', $99.50, 3, NULL, '2021-10-31', '2015-07-26'),
+	(1412494, 218, 'Chequing', $5010.33, 4, NULL, '2021-11-15', '2020-03-04'),
+	(5929592, 218, 'Chequing', $69.40, 5, NULL, '2021-11-01', '2021-08-16')
 GO
 
 
@@ -220,7 +220,7 @@ INSERT AccountTransactions (AccountID, CustomerID, Deposit, Withdrawal, BranchID
 	(117701, 211, NULL, NULL, 2, '2021-09-15', '2020-09-15', $800.00, 07),
 	(87580, 210, $400.00, NULL, 3, '2021-11-01', NULL, NULL, NULL),
 	(1262055, 212, $135.00, NULL, 9, '2021-11-05', NULL, NULL, NULL),
-	(1412494, 219,  $5010.33, NULL, 1, '2021-11-15', NULL, NULL, NULL), 
+	(1412494, 216,  $5010.33, NULL, 1, '2021-11-15', NULL, NULL, NULL), 
 	(4933919, 214, $1030.75, NULL, 5, '2021-10-15', NULL, NULL, NULL),
 	(1521355, 206, $1000.00, NULL, 2, '2021-05-01', NULL, NULL, NULL),	
 	(304020, 216,  NULL, $4910.39, 1, '2021-11-05',  NULL, NULL, NULL),
@@ -228,7 +228,7 @@ INSERT AccountTransactions (AccountID, CustomerID, Deposit, Withdrawal, BranchID
 	(86949, 213,  $349.73, NULL, 7, '2021-09-02', NULL, NULL, NULL),
 	(4995999, 218,  $18.00, NULL, 4, '2021-10-20',  NULL, NULL, NULL),
 	(294920, 215,  NULL, $10800.00, 8, '2021-09-08',  NULL, NULL, NULL),
-	(5929592, 220,  NULL, NULL, 3, '2021-07-31', '2021-07-31', $84.71, 230),
+	(5929592, 212,  NULL, NULL, 3, '2021-07-31', '2021-07-31', $84.71, 230),
 	(2503681, 200, NULL, NULL, 7, '2021-09-30', '2021-09-30', $200.00, 52)
 GO
 
