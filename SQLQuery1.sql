@@ -79,11 +79,10 @@ SELECT * FROM ChequeRecord WHERE ChequeDate='2021-05-18';
 
 
 
-
 -- 9
 /**  "User Story" (You are an assistant to a bank manager.  The manager has asked you to create 
 a list of all employees including their address, who have worked for the bank in the province of Alberta for 
-over 5 years as of January 1, 2022, so that the bank can mail to them a 5 years of service award cheque.  **/
+over 5 years as of January 1, 2022, so that the bank can mail to them a 5 years of service award cheque.)  **/
 
 USE SKS;
 
@@ -93,8 +92,14 @@ WHERE HireDate>'2017-01-01';
 
 
 -- 10
-/* "User Story" (Update any employee�s payrate after they�ve been with the company 
-for a certain (ex. 10years) amount of time) */
+/** "User Story (The bank has noticed they are having trouble retaining entry level employees.
+In an attempt to encourage employees to stay, the bank wants to increase their lowest paid employees'
+hourly pay rates.)  **/
+
+USE SKSv2 
+UPDATE Employee
+SET PayRate = Payrate + 2
+WHERE Payrate < 25;
 
 
 -- 11
