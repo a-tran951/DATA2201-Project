@@ -60,10 +60,10 @@ CREATE TABLE Customer(
 GO
 
 
+
 /**  Object:  Table Account  **/   
 CREATE TABLE Account(
 	AccountID INT PRIMARY KEY,
-	CustomerID INT NOT NULL,
 	AccountType VARCHAR (50) NOT NULL,
 	Balance MONEY,
 	BranchID INT NOT NULL,
@@ -108,6 +108,13 @@ CREATE TABLE LoanPayments(
 	CustomerID INT NOT NULL,
 	Amount MONEY NOT NULL,
 	PaymentDate DATE NOT NULL
+	)
+GO
+
+/**  Object:  Table CustomerAccount  **/ 
+CREATE TABLE CustomerAccount(
+	CustomerID INT NOT NULL,
+	AccountID INT NOT NULL
 	)
 GO
 
@@ -182,28 +189,28 @@ GO
 
 
 /**  Adding records to the Account table  **/ 
-INSERT Account (AccountID, CustomerID, AccountType, Balance, BranchID, InterestRate, LastAccessed, DateOpened) VALUES
-	(2503681, 200, 'Chequing', $6780.00, 1, NULL, '2021-11-04', '2018-02-16'),
-	(596046, 201, 'Saving', $18.00, 4, 0.01, '2020-12-30', '2001-01-02'),
-	(213281, 202, 'Chequing', $10999.81, 6, NULL, '2021-11-10', '1998-11-13'),
-	(1571618, 203, 'Chequing', $343.88, 8, NULL, '2021-11-09', '2007-10-03'),
-	(1756788, 204, 'Saving', $1239.02, 1, 0.01, '2021-02-11', '2021-02-10'),
-	(1947453, 205, 'Saving', $8900.74, 3, 0.01, '2021-09-03', '2020-09-08'),
-	(1521355, 206, 'Saving', $9900.18, 2, 0.01, '2021-05-17', '2021-04-01'),
-	(1177887, 207, 'Chequing', $608.58, 4, NULL, '2021-11-01', '2009-03-18'),
-	(1108061, 208, 'Saving', $2988.11, 5, 0.01, '2021-10-14', '2015-12-01'),
-	(1947492, 209, 'Saving', $701.21, 7, 0.01, '2021-06-02', '2019-05-14'),
-	(87580, 210, 'Chequing', $844.38, 3, NULL, '2021-11-09', '2017-11-22'),
-	(117701, 211, 'Chequing', $12.78, 2, NULL, '2021-09-20', '2020-06-28'),
-	(1262055, 212, 'Chequing', $294.84, 9, NULL, '2021-11-10', '2008-07-02'),
-	(86949, 213, 'Saving', $3859.47, 7, 0.01, '2021-09-30', '2020-09-24'),
-	(4933919, 214, 'Chequing', $20300.16, 5, NULL, '2021-10-15', '2003-11-13'),
-	(294920, 215, 'Chequing', $3401.05, 2, NULL, '2021-09-08', '2018-05-19'),
-	(304020, 216, 'Saving', $5195.55, 8, 0.01, '2021-11-05', '2019-07-25'),
-	(2040501, 216, 'Saving', $481.30, 9, 0.01, '2021-04-03', '2001-01-29'),
-	(4995999, 213, 'Chequing', $99.50, 3, NULL, '2021-10-31', '2015-07-26'),
-	(1412494, 218, 'Chequing', $5010.33, 4, NULL, '2021-11-15', '2020-03-04'),
-	(5929592, 218, 'Chequing', $69.40, 5, NULL, '2021-11-01', '2021-08-16')
+INSERT Account (AccountID, AccountType, Balance, BranchID, InterestRate, LastAccessed, DateOpened) VALUES
+	(2503681, 'Chequing', $6780.00, 1, NULL, '2021-11-04', '2018-02-16'),
+	(596046, 'Saving', $18.00, 4, 0.01, '2020-12-30', '2001-01-02'),
+	(213281, 'Chequing', $10999.81, 6, NULL, '2021-11-10', '1998-11-13'),
+	(1571618, 'Chequing', $343.88, 8, NULL, '2021-11-09', '2007-10-03'),
+	(1756788, 'Saving', $1239.02, 1, 0.01, '2021-02-11', '2021-02-10'),
+	(1947453, 'Saving', $8900.74, 3, 0.01, '2021-09-03', '2020-09-08'),
+	(1521355, 'Saving', $9900.18, 2, 0.01, '2021-05-17', '2021-04-01'),
+	(1177887, 'Chequing', $608.58, 4, NULL, '2021-11-01', '2009-03-18'),
+	(1108061, 'Saving', $2988.11, 5, 0.01, '2021-10-14', '2015-12-01'),
+	(1947492, 'Saving', $701.21, 7, 0.01, '2021-06-02', '2019-05-14'),
+	(87580, 'Chequing', $844.38, 3, NULL, '2021-11-09', '2017-11-22'),
+	(117701, 'Chequing', $12.78, 2, NULL, '2021-09-20', '2020-06-28'),
+	(1262055, 'Chequing', $294.84, 9, NULL, '2021-11-10', '2008-07-02'),
+	(86949, 'Saving', $3859.47, 7, 0.01, '2021-09-30', '2020-09-24'),
+	(4933919, 'Chequing', $20300.16, 5, NULL, '2021-10-15', '2003-11-13'),
+	(294920, 'Chequing', $3401.05, 2, NULL, '2021-09-08', '2018-05-19'),
+	(304020, 'Saving', $5195.55, 8, 0.01, '2021-11-05', '2019-07-25'),
+	(2040501, 'Saving', $481.30, 9, 0.01, '2021-04-03', '2001-01-29'),
+	(4995999, 'Chequing', $99.50, 3, NULL, '2021-10-31', '2015-07-26'),
+	(1412494, 'Chequing', $5010.33, 4, NULL, '2021-11-15', '2020-03-04'),
+	(5929592, 'Chequing', $69.40, 5, NULL, '2021-11-01', '2021-08-16')
 GO
 
 
@@ -224,11 +231,11 @@ INSERT AccountTransactions (AccountID, CustomerID, Deposit, Withdrawal, BranchID
 	(4933919, 214, $1030.75, NULL, 5, '2021-10-15', NULL, NULL, NULL),
 	(1521355, 206, $1000.00, NULL, 2, '2021-05-01', NULL, NULL, NULL),	
 	(304020, 216,  NULL, $4910.39, 1, '2021-11-05',  NULL, NULL, NULL),
-	(2040501, 217,  $25.00, NULL, 2, '2021-03-26',  NULL, NULL, NULL),
+	(2040501, 216,  $25.00, NULL, 2, '2021-03-26',  NULL, NULL, NULL),
 	(86949, 213,  $349.73, NULL, 7, '2021-09-02', NULL, NULL, NULL),
-	(4995999, 218,  $18.00, NULL, 4, '2021-10-20',  NULL, NULL, NULL),
+	(4995999, 216,  $18.00, NULL, 4, '2021-10-20',  NULL, NULL, NULL),
 	(294920, 215,  NULL, $10800.00, 8, '2021-09-08',  NULL, NULL, NULL),
-	(5929592, 212,  NULL, NULL, 3, '2021-07-31', '2021-07-31', $84.71, 230),
+	(5929592, 218,  NULL, NULL, 3, '2021-07-31', '2021-07-31', $84.71, 230),
 	(2503681, 200, NULL, NULL, 7, '2021-09-30', '2021-09-30', $200.00, 52)
 GO
 
@@ -264,6 +271,44 @@ INSERT LoanPayments (LoanID, BranchID, CustomerID, Amount, PaymentDate) VALUES
 	(103, 4, 208, $714.35, '2021-11-15')
 GO
 
+/**  Adding records to the CustomerAccount table  **/ 
+INSERT CustomerAccount (CustomerID, AccountID) VALUES
+	(200, 2503681),
+	(201, 596046),
+	(202, 213281),
+	(203, 1571618),
+	(204, 1756788),
+	(205, 1947453),
+	(206, 1521355),
+	(207, 1177887),
+	(208, 1108061),
+	(209, 1947492),
+	(210, 87580),
+	(211, 117701),
+	(212, 1262055),
+	(213, 86949),
+	(214, 4933919),
+	(215, 294920),
+	(216, 304020),
+	(216, 2040501),
+	(216, 4995999),
+	(217, 1412494),
+	(218, 5929592)
+GO
+
+
+/** Adding constraints to CustomerAccount Table **/
+ALTER TABLE CustomerAccount
+ADD CONSTRAINT FK_CustomerAcount_A
+FOREIGN KEY (AccountID) REFERENCES Account(AccountID);
+
+ALTER TABLE CustomerAccount
+ADD CONSTRAINT FK_CustomerAccount_C
+FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID);
+
+ALTER TABLE CustomerAccount
+ADD CONSTRAINT PK_CustomerAccount
+PRIMARY KEY (CustomerID, AccountID);
 
 /** Adding Foreign Key constraints to Employee Table **/
 ALTER TABLE Employee
@@ -290,15 +335,15 @@ ALTER TABLE LoanPayments
 ADD CONSTRAINT FK_Customer_LoanPayments
 FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID);
 
+--ALTER TABLE LoanPayments
+--ADD CONSTRAINT FK_Loans_LoanPayments
+--FOREIGN KEY (LoanID) REFERENCES Loans(LoanID);
+
 
 /** Adding Foreign Key constraints to Account Table **/
 ALTER TABLE Account
 ADD CONSTRAINT FK_Branch_Account
 FOREIGN KEY (BranchID) REFERENCES Branch(BranchID);
-
-ALTER TABLE Account
-ADD CONSTRAINT FK_Customer_Account
-FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID);
 
 
 /** Adding Foreign Key constraints to AccountTransactions Table **/
@@ -313,3 +358,5 @@ FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID);
 ALTER TABLE AccountTransactions
 ADD CONSTRAINT FK_Account_AccountTransactions
 FOREIGN KEY (AccountID) REFERENCES Account(AccountID);
+
+
