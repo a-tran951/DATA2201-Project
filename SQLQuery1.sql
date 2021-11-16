@@ -96,7 +96,8 @@ WHERE HireDate>'2017-01-01';
 In an attempt to encourage employees to stay, the bank wants to increase their lowest paid employees'
 hourly pay rates.)  **/
 
-USE SKSv2 
+USE SKS;
+
 UPDATE Employee
 SET PayRate = Payrate + 2
 WHERE Payrate < 25;
