@@ -25,36 +25,59 @@ WHERE WorkLocation = 'Downtown' AND EmployeePos <> 'Manager';
 
 -- 4
 
+/*
+	The bank owner wants to know how much is lost from Loans 
+*/
+USE SKS;
 
+SELECT SUM(DISTINCT Amount) - SUM(DISTINCT PrincipalAmount) AS BankTotal
+FROM AccountTransactions AcTr
+JOIN Loans Lo
+	ON Lo.BranchID = AcTr.BranchID
+JOIN LoanPayments LP
+	ON LP.LoanID = Lo.LoanID
+WHERE Lo.BranchID = '2';
 
 -- 5
 
+/*
+	The Bank manager wants to know how long an employee has been with the Bank
+*/
+
 USE SKS;
 
-SELECT DATEDIFF(hh,HireDate, SYSDATETIME()) AS HoursWorked 
+SELECT DATEDIFF(DD,HireDate, SYSDATETIME()) AS DaysWith
 FROM Employee
 
 -- 6
 
+/*
+	Customer/Employee wants to know who the account is held by
+*/
+
 USE SKS;
 
 SELECT C.FirstName + ' ' + C.LastName AS AccountHolders
-FROM Customer C JOIN CustomerAccount CA
+FROM Customer C 
+JOIN CustomerAccount CA
 	ON C.CustomerID = CA.CustomerID
-WHERE CA.AccountID = '';
+WHERE CA.AccountID = '120';
 
 -- 7
 
+/*
+	The Bank wants to know who to contact for a specific Loan
+*/
+
 USE SKS;
 
-SELECT * FROM LoanRecord;
-SELECT LR.LoanAmount
-FROM LoanRecord LR 
-LEFT JOIN AccountLoan AL
-	ON LR.LoanID = AL.LoanID
-RIGHT JOIN Account A
-	ON AL.AccountID = A.AccountID
-WHERE A.AccountID = '110' AND LR.PaymentNumber = '1';
+SELECT C.FirstName + ' ' + C.LastName AS AccountHolders
+FROM Customer C 
+JOIN CustomerAccount CA
+	ON C.CustomerID = CA.CustomerID
+RIGHT JOIN LoanPayments LP
+	ON LP.AccountID = CA.AccountID
+WHERE LP.LoanID = '108' AND LP.PaymentNumber = '2'
 
 
 
@@ -66,6 +89,8 @@ To correct this search payments on that date in that amount, to determine which 
 The employee will need to ensure the ChequeRecordID table is updated to show the payment is reflected in the correct account) **/
 
 USE SKS
+/*
+
 UPDATE ChequeRecord
 SET 
     AccountID = 121
@@ -77,7 +102,7 @@ WHERE
 USE SKS
 SELECT * FROM ChequeRecord WHERE ChequeDate='2021-05-18';
 
-
+*/
 
 -- 9
 /**  "User Story" (You are an assistant to a bank manager.  The manager has asked you to create 
@@ -109,8 +134,8 @@ WHERE Payrate < 25;
 
 USE SKS;
 
-SELECT 
-FROM Loans JOIN LoanPayments
+--SELECT 
+--FROM Loans JOIN LoanPayments
 
 
 /*
