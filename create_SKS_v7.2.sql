@@ -91,7 +91,7 @@ GO
 
 /**  Object:  Table Loans  **/   
 CREATE TABLE Loans(
-	LoanID INT PRIMARY KEY IDENTITY(10,1),
+	LoanID INT PRIMARY KEY IDENTITY(101,1),
 	BranchID INT NOT NULL,
 	CustomerID INT NOT NULL,
 	PrincipalAmount MONEY,
@@ -335,9 +335,9 @@ ALTER TABLE LoanPayments
 ADD CONSTRAINT FK_Customer_LoanPayments
 FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID);
 
---ALTER TABLE LoanPayments
---ADD CONSTRAINT FK_Loans_LoanPayments
---FOREIGN KEY (LoanID) REFERENCES Loans(LoanID);
+ALTER TABLE LoanPayments
+ADD CONSTRAINT FK_Loans_LoanPayments
+FOREIGN KEY (LoanID) REFERENCES Loans(LoanID);
 
 
 /** Adding Foreign Key constraints to Account Table **/
