@@ -80,27 +80,28 @@ RIGHT JOIN LoanPayments LP
 WHERE LP.LoanID = '108' AND LP.PaymentNumber = '2'
 
 
-
 -- 8
-/** "User Story" (Update cheque record id, update account to match what their account is because 
-customer has called and explained they deposited $13142.00 to their account (AccountID 121) on May 18, 2021, 
-however they have now examined their account statement for May and their payment is not listed.  
-To correct this search payments on that date in that amount, to determine which account the payment was deposited into.  
-The employee will need to ensure the ChequeRecordID table is updated to show the payment is reflected in the correct account) **/
+/** "User Story" (Update cheque record id, update account to match what their account is because a
+customer has called and explained they visited Branch ID 5 and made a deposit of $1030.75 to their account (AccountID 4933919) 
+on October 15, 2021, however they have now examined their account statement for October and their payment is not listed.  
+To correct this, the employee can search payments on that date in that amount, to determine which account the payment was 
+deposited into, and correct the transaction. The employee will then need to ensure the AccountTransaction table is 
+updated to show the payment is reflected in the correct account) **/
 
 USE SKS
+
 /*
 
-UPDATE ChequeRecord
+UPDATE AccountTransactions
 SET 
-    AccountID = 121
+    AccountID = 4933919
 WHERE
-    ChequeDate='2021-05-18'
-	AND Amount = 13142.00
+    TransactionDate='2021-05-18'
+	AND Amount = 1030.75
 
 -- Test statement 
 USE SKS
-SELECT * FROM ChequeRecord WHERE ChequeDate='2021-05-18';
+SELECT * FROM AccountTransactions WHERE TransactionDate='2021-10-15';
 
 */
 
