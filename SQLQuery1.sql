@@ -14,8 +14,8 @@ WHERE EmployeeID IN (SELECT ManagerID FROM Employee);
 
 
 -- 2 
--- Special training is being offered for all employees hired between June 1st 2020 and October 4th 2020. Only display employees that qualify for this special training.
--- LEFT JOIN with WHERE clause
+-- Special training is being offered for all employees that work at the 'Downtown' bank location and were hired between June 1st 2020 and October 4th 2020. Only display employees that qualify for this special training.
+-- WHERE clause
 
 USE SKS;
 
@@ -148,10 +148,19 @@ GROUP BY AL.AccountID, LR.LoanID, LR.LoanAmount, LR.PaymentDate;
 */
 
 -- 12
--- "User Story"
+-- "User Story" (Find all bankers that are preferred by customers)
+-- Display the CustomerID and Full Name of customers with preffered bankers, the BranchID and Branch Name of the branch that their preferred banker works at, 
+-- and the EmployeeID and Employee Name of their preferred banker. Sort the results by CustomerID.
 
 USE SKS;
 
-
+SELECT C.CustomerID, C.LastName + ', ' + C.FirstName AS 'Customer Name' , B.BranchID, B.BranchName AS 'Branch Name',  E.EmployeeID, E.LastName + ', ' + E.FirstName AS 'Preferred Employee'  
+FROM Customer C JOIN CustomerAccount CA
+	ON C.CustomerID = CA.CustomerID
+	JOIN Account A ON CA.AccountID = A.AccountID
+	JOIN Branch B ON A.BranchID = B.BranchID
+	JOIN Employee E ON B.BranchID = E.BranchID
+WHERE E.EmployeeID = C.BankerEmpID and A.BranchID = E.BranchID
+ORDER BY C.CustomerID ASC;
 
 
