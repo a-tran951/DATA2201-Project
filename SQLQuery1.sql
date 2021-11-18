@@ -46,7 +46,7 @@ WHERE Lo.BranchID = '2';
 
 USE SKS;
 
-SELECT DATEDIFF(DD,HireDate, SYSDATETIME()) AS DaysWith
+SELECT FirstName + ' ' + LastName AS Employee, DATEDIFF(DD,HireDate, SYSDATETIME()) AS DaysWith
 FROM Employee
 
 -- 6
@@ -90,8 +90,8 @@ updated to show the payment is reflected in the correct account) **/
 
 USE SKS
 
-/*
 
+/*
 UPDATE AccountTransactions
 SET 
     AccountID = 4933919
@@ -102,8 +102,8 @@ WHERE
 -- Test statement 
 USE SKS
 SELECT * FROM AccountTransactions WHERE TransactionDate='2021-10-15';
-
 */
+
 
 -- 9
 /**  "User Story" (You are an assistant to a bank manager.  The manager has asked you to create 
