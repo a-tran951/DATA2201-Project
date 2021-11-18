@@ -19,7 +19,7 @@ WHERE EmployeeID IN (SELECT ManagerID FROM Employee);
 
 USE SKS;
 
-SELECT EmployeeID, FirstName, LastName
+SELECT EmployeeID, FirstName + ' ' + LastName AS 'Employee Name'
 FROM Employee
 WHERE WorkLocation = 'Downtown' AND EmployeePos <> 'Manager';
 
@@ -148,13 +148,13 @@ GROUP BY AL.AccountID, LR.LoanID, LR.LoanAmount, LR.PaymentDate;
 */
 
 -- 12
--- "User Story" (Find all bankers that are preferred by customers)
--- Display the CustomerID and Full Name of customers with preffered bankers, the BranchID and Branch Name of the branch that their preferred banker works at, 
--- and the EmployeeID and Employee Name of their preferred banker. Sort the results by CustomerID.
+-- SKS National Bank management wants a list of all employees with the occupation 'Banker' that are preferred by customers of the bank.
+-- Make sure to sort the resulting table by CustomerID and include the following columns: CustomerID, Customer Name, BranchID, Branch Name, Preferred Employee, and EmployeeID. sort the results by CustomerID.
+-- Muliple INNER JOIN statements
 
 USE SKS;
 
-SELECT C.CustomerID, C.LastName + ', ' + C.FirstName AS 'Customer Name' , B.BranchID, B.BranchName AS 'Branch Name',  E.EmployeeID, E.LastName + ', ' + E.FirstName AS 'Preferred Employee'  
+SELECT C.FirstName + ' ' + C.LastName AS 'Customer Name' , C.CustomerID, B.BranchName AS 'Branch Name', B.BranchID, E.FirstName + ' ' + E.LastName AS 'Preferred Employee', E.EmployeeID
 FROM Customer C JOIN CustomerAccount CA
 	ON C.CustomerID = CA.CustomerID
 	JOIN Account A ON CA.AccountID = A.AccountID
