@@ -14,14 +14,32 @@ WHERE EmployeeID IN (SELECT ManagerID FROM Employee);
 
 
 -- 2 
--- Special training is being offered for all employees that work at the 'Downtown' bank location and were hired between June 1st 2020 and October 4th 2020. Only display employees that qualify for this special training.
--- WHERE clause
+-- Special training is being offered for all employees that work at the 'Downtown' bank location and have worked for the bank for at least 3 years. 
+-- List all employees, sorted by EmployeeID, with employees that qualify for the training being listed first.
+-- CASE statement
 
 USE SKS;
 
-SELECT EmployeeID, FirstName + ' ' + LastName AS 'Employee Name'
+SELECT EmployeeID, FirstName + ' ' + LastName AS 'Employee Name', 
+	CASE 
+		WHEN WorkLocation = 'Downtown' AND HireDate < '2018-11-19' THEN 'Yes'
+		ELSE 'No'
+	END AS 'Training Eligible'
 FROM Employee
-WHERE WorkLocation = 'Downtown' AND EmployeePos <> 'Manager';
+ORDER BY 'Training Eligible' DESC, EmployeeID ASC;
+
+-- 3
+-- "User Story" (Display all chequing accounts with balances greater than $500 that have never made any loans, order result by account balance)
+-- LEFT JOIN clause
+
+USE SKS;
+
+SELECT A.AccountID, A.Balance, A.BranchID, A.LastAccessed, A.DateOpened
+FROM Account A LEFT JOIN LoanPayments LP
+	ON A.AccountID = LP.AccountID
+WHERE A.InterestRate IS NULL AND LP.LoanPaymentID IS NULL
+ORDER BY A.Balance;
+
 
 -- 4
 
@@ -130,32 +148,13 @@ WHERE Payrate < 25;
 
 
 -- 11
-/* "User Story" (Display all loans with balances less than $2000 between October 2nd 2021 and December 1st 2021, only showing loans made by a specific account) 
-*/
+-- SKS National Bank management wants a list of all employees that are listed as personal bankers for customers of the bank.
+-- Make sure to sort the resulting table by CustomerID and include the following columns: CustomerID, Customer Name, BranchID, Branch Name, Preferred Employee, and EmployeeID. Sort the results by CustomerID.
+-- Muliple INNER JOIN clauses
 
 USE SKS;
 
---SELECT 
---FROM Loans JOIN LoanPayments
-
-
-/*
--- Needs editing, currently outputs nothing
-SELECT AL.AccountID, LR.LoanID, LR.LoanAmount, LR.PaymentDate
-FROM LoanRecord LR JOIN AccountLoan AL
-	ON LR.LoanID = AL.LoanID
-WHERE (LR.PaymentDate BETWEEN '2021-10-01 23:59:59:59' AND '2021-12-01 00:00:00:01') AND LR.LoanAmount <= 2000
-GROUP BY AL.AccountID, LR.LoanID, LR.LoanAmount, LR.PaymentDate;
-*/
-
--- 12
--- SKS National Bank management wants a list of all employees with the occupation 'Banker' that are preferred by customers of the bank.
--- Make sure to sort the resulting table by CustomerID and include the following columns: CustomerID, Customer Name, BranchID, Branch Name, Preferred Employee, and EmployeeID. sort the results by CustomerID.
--- Muliple INNER JOIN statements
-
-USE SKS;
-
-SELECT C.FirstName + ' ' + C.LastName AS 'Customer Name' , C.CustomerID, B.BranchName AS 'Branch Name', B.BranchID, E.FirstName + ' ' + E.LastName AS 'Preferred Employee', E.EmployeeID
+SELECT C.FirstName + ' ' + C.LastName AS 'Customer Name' , C.CustomerID, B.BranchName AS 'Branch Name', B.BranchID, E.FirstName + ' ' + E.LastName AS 'Personal Banker', E.EmployeeID
 FROM Customer C JOIN CustomerAccount CA
 	ON C.CustomerID = CA.CustomerID
 	JOIN Account A ON CA.AccountID = A.AccountID
