@@ -68,7 +68,6 @@ WHERE Lo.BranchID = '2';
 -- 5
 
 /*
-	The Bank manager wants to know how long an employee has been with the Bank
 "User Story" (The Bank manager wants to know how long its employees have been with the Bank, since their date of hire through to the current date.)
 */
 
