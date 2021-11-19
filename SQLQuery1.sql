@@ -50,9 +50,9 @@ ORDER BY 'Training Eligible' DESC, EmployeeID ASC;
 USE SKS;
 
 SELECT A.AccountID, A.Balance, A.BranchID, A.LastAccessed, A.DateOpened
-FROM Account A LEFT JOIN LoanPayments LP
-	ON A.AccountID = LP.AccountID
-WHERE A.InterestRate IS NULL AND LP.LoanPaymentID IS NULL
+FROM Account A LEFT JOIN Loans L
+	ON A.AccountID = L.AccountID
+WHERE A.InterestRate IS NULL AND A.Balance > 500 AND L.LoanID IS NULL
 ORDER BY A.Balance;
 
 
