@@ -93,7 +93,7 @@ GO
 CREATE TABLE Loans(
 	LoanID INT PRIMARY KEY IDENTITY(101,1),
 	BranchID INT NOT NULL,
-	CustomerID INT NOT NULL,
+	AccountID INT NOT NULL,
 	PrincipalAmount MONEY,
 	LoanDate DATE NOT NULL
 	)
@@ -105,7 +105,7 @@ CREATE TABLE LoanPayments(
 	LoanPaymentID INT PRIMARY KEY IDENTITY(20,1),
 	PaymentNumber INT NOT NULL,
 	LoanID INT NOT NULL,
-	AccountID INT NOT NULL,
+	CustomerID INT NOT NULL,
 	Amount MONEY NOT NULL,
 	PaymentDate DATE NOT NULL
 	)
@@ -241,34 +241,34 @@ GO
 
 
 /**  Adding records to the Loans table  **/ 
-INSERT Loans (BranchID, CustomerID, PrincipalAmount, LoanDate) VALUES
-	(1, 214, $571000.00, '2021-08-15'),
-	(1, 214, $25000.00, '2018-07-20'),
-	(4, 208, $43078.38, '2020-06-07'),
-	(8, 207, $2120000.00, '2021-05-30'),
-	(3, 211, $749100.59, '2019-09-30'),
-	(2, 202, $129405.70, '2020-12-02'),
-	(7, 216, $17200.14, '2021-11-01'),
-	(9, 201, $28309.99, '2018-08-01')
+INSERT Loans (BranchID, AccountID, PrincipalAmount, LoanDate) VALUES
+	(1, 115, $571000.00, '2021-08-15'),
+	(1, 115, $25000.00, '2018-07-20'),
+	(4, 109, $43078.38, '2020-06-07'),
+	(8, 108, $2120000.00, '2021-05-30'),
+	(3, 112, $749100.59, '2019-09-30'),
+	(2, 103, $129405.70, '2020-12-02'),
+	(7, 118, $17200.14, '2021-11-01'),
+	(9, 102, $28309.99, '2018-08-01')
 GO
 
 
 /**  Adding records to the Loan Payments table  **/ 
-INSERT LoanPayments (LoanID, PaymentNumber, AccountID, Amount, PaymentDate) VALUES
-	(108, 1, 101, $409.57, '2021-09-01'),
-	(104, 1, 107, $200000.00, '2021-09-30'),
-	(108, 2, 101, $409.57, '2021-10-01'),
-	(106, 1, 102, $84.19, '2021-10-01'),
-	(102, 1, 114, $500.00, '2021-10-01'),
-	(101, 1, 114, $8030.00, '2021-10-15'),
-	(103, 1, 108, $714.35, '2021-10-15'),
-	(104, 2, 107, $200000.00, '2021-10-30'),
-	(105, 1, 111, $3199.87, '2021-10-30'),
-	(106, 2, 102, $84.19, '2021-11-01'),
-	(102, 2, 114, $500.00, '2021-11-01'),
-	(108, 3, 101, $409.57, '2021-11-01'),
-	(101, 2, 114, $8030.00, '2021-11-15'),
-	(103, 3, 108, $714.35, '2021-11-15')
+INSERT LoanPayments (LoanID, PaymentNumber, CustomerID, Amount, PaymentDate) VALUES
+	(108, 1, 200, $409.57, '2021-09-01'),
+	(104, 1, 206, $200000.00, '2021-09-30'),
+	(108, 2, 200, $409.57, '2021-10-01'),
+	(106, 1, 201, $84.19, '2021-10-01'),
+	(102, 1, 213, $500.00, '2021-10-01'),
+	(101, 2, 213, $8030.00, '2021-10-15'),
+	(103, 1, 207, $714.35, '2021-10-15'),
+	(104, 2, 206, $200000.00, '2021-10-30'),
+	(105, 1, 210, $3199.87, '2021-10-30'),
+	(106, 2, 201, $84.19, '2021-11-01'),
+	(102, 3, 213, $500.00, '2021-11-01'),
+	(108, 3, 200, $409.57, '2021-11-01'),
+	(101, 4, 213, $8030.00, '2021-11-15'),
+	(103, 3, 207, $714.35, '2021-11-15')
 GO
 
 /**  Adding records to the CustomerAccount table  **/ 
@@ -322,15 +322,15 @@ ADD CONSTRAINT FK_Branch_Loans
 FOREIGN KEY (BranchID) REFERENCES Branch(BranchID);
 
 ALTER TABLE Loans
-ADD CONSTRAINT FK_Customer_Loans
-FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID);
+ADD CONSTRAINT FK_Account_Loans
+FOREIGN KEY (AccountID) REFERENCES Account(AccountID);
 
 
 /** Adding Foreign Key constraints to LoanPayments Table **/
 
 ALTER TABLE LoanPayments
-ADD CONSTRAINT FK_Account_LoanPayments
-FOREIGN KEY (AccountID) REFERENCES Account(AccountID);
+ADD CONSTRAINT FK_Customer_LoanPayments
+FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID);
 
 ALTER TABLE LoanPayments
 ADD CONSTRAINT FK_Loans_LoanPayments
