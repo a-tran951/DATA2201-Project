@@ -3,15 +3,19 @@
 -- Janine Neville, Connor Pittman, Alex Tran
 
 -- 1
--- "User Story" (Display all current managers who have hired other current employees) 
--- SUBQUERY in a WHERE statement
 
 USE SKS;
 
-SELECT EmployeeID, FirstName, LastName
+SELECT EmployeeID, FirstName + ' ' + LastName AS 'Employee Name', ISNULL(ManagerID, 'N/A') AS ManagerID,
+	CASE
+		WHEN ManagerID = EmployeeID THEN 'N/A'
+		WHEN ManagerID = 111 THEN 'Bradley King'
+		WHEN ManagerID = 114 THEN 'Walter White'
+		WHEN ManagerID = 118 THEN 'Edna Mode'
+		ELSE 'N/A'
+	END AS 'Manager Name'
 FROM Employee
-WHERE EmployeeID IN (SELECT ManagerID FROM Employee);
-
+ORDER BY 'Manager Name' ASC, 'Employee Name' ASC;
 
 -- 2 
 -- Special training is being offered for all employees that work at the 'Downtown' bank location and have worked for the bank for at least 3 years. 

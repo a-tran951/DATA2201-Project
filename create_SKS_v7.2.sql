@@ -153,14 +153,14 @@ INSERT Employee (EmployeePos, FirstName, LastName, HomeAddress, HireDate, Manage
 	('Banker', 'Mary', 'Turner', '1200 Cranston Blvd SW Calgary', '2001-05-26', 114, $21.00, 8, 'Shawnessy', 'Branch'),
 	('Banker', 'Sofia', 'Torres', '645 Dover Street SW Calgary', '2015-02-11', 118, $21.00, 9, 'Panorama Hills', 'Branch'),
 	('Banker', 'Ahmed', 'Chavan', '601 Coach Hill Street SW Calgary', '2005-05-05', 118, $21.00, 10, 'Downtown', 'Branch'),
-	('Manager', 'Bradley', 'King', '1402 Bowness Street NW Calgary', '2003-04-01', NULL, $32.00, 11, 'Beltline', 'Office'),
+	('Manager', 'Bradley', 'King', '1402 Bowness Street NW Calgary', '2003-04-01', 118, $32.00, 11, 'Beltline', 'Office'),
 	('Banker', 'Francine', 'Smith', '291 Windemere Crescent SW Calgary', '2015-01-28', 111, $21.00, 12, 'Valley Ridge', 'Branch'),
 	('Banker', 'Alphonse', 'Elric', '123 45 Street SW Calgary', '2019-07-16', 118, $21.00, 13, 'Sunridge', 'Branch'),
-	('Manager', 'Walter', 'White', '3828 Piermont Drive NE Calgary', '2016-11-20', NULL, $32.00, 14, 'Silverado', 'Office'),	
+	('Manager', 'Walter', 'White', '3828 Piermont Drive NE Calgary', '2016-11-20', 118, $32.00, 14, 'Silverado', 'Office'),	
 	('Loan Officer', 'Olivia', 'Harper', '6078 Cloverdale Avenue NW Edmonton','2004-09-18', 114, $24.00, 15, 'Pleasantview', 'Branch'),
 	('Banker', 'Fatima', 'Montes', '5456 Heritage Valley Street SW Edmonton', '2008-07-31', 114, $21.00, 16, 'Westmount', 'Branch'),
 	('Banker', 'Nora', 'Cooper', '400 Abbeydale Lane NE Calgary', '2017-12-30', 111, $21.00, 12, 'Inglewood', 'Branch'),
-	('Manager', 'Edna', 'Mode', '1920 Centre Street NW Calgary', '2001-11-07', NULL, $32.00, 11, 'Coventry Hills', 'Branch')
+	('Manager', 'Edna', 'Mode', '1920 Centre Street NW Calgary', '2001-11-07', 118, $32.00, 11, 'Coventry Hills', 'Branch')
 GO
 
 
