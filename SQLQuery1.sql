@@ -82,6 +82,7 @@ USE SKS;
 
 SELECT FirstName + ' ' + LastName AS Employee, DATEDIFF(DD,HireDate, SYSDATETIME()) AS DaysWith
 FROM Employee
+ORDER BY DaysWith DESC
 
 -- 6
 /**
