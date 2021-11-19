@@ -110,13 +110,17 @@ WHERE CA.AccountID = '120';
 
 USE SKS;
 
-SELECT C.FirstName + ' ' + C.LastName AS AccountHolders
-FROM Customer C 
+SELECT Cu.FirstName + ' ' + Cu.LastName AS AccountHolders
+FROM Customer Cu 
 JOIN CustomerAccount CA
-	ON C.CustomerID = CA.CustomerID
+	ON Cu.CustomerID = CA.CustomerID
+LEFT JOIN Account Ac
+	ON Cu.CustomerID = CA.CustomerID
+RIGHT JOIN Loans Lo
+	ON Lo.AccountID = Ac.AccountID
 RIGHT JOIN LoanPayments LP
-	ON LP.AccountID = CA.AccountID
-WHERE LP.LoanID = '108' AND LP.PaymentNumber = '2'
+	ON Lo.LoanID = LP.LoanID
+WHERE Lo.LoanID = '108' AND LP.PaymentNumber = '2';
 
 
 -- 8
