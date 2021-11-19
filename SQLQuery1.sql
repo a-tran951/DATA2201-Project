@@ -3,7 +3,9 @@
 -- Janine Neville, Connor Pittman, Alex Tran
 
 -- 1
--- "User Story" (Display all current managers who have hired other current employees) 
+-- "User Story" (The bank's national head office has asked for a report with information regarding the current bank managers.  
+-- This will report will need to include a list of all the management staff who have hired employees in the province of Alberta.  
+-- The bank manager wants to display all current managers who have hired other current employees) 
 -- SUBQUERY in a WHERE statement
 
 USE SKS;
@@ -14,8 +16,9 @@ WHERE EmployeeID IN (SELECT ManagerID FROM Employee);
 
 
 -- 2 
--- Special training is being offered for all employees that work at the 'Downtown' bank location and have worked for the bank for at least 3 years. 
--- List all employees, sorted by EmployeeID, with employees that qualify for the training being listed first.
+-- "User Story" (Special training is being offered for all employees that work at the 'Downtown' bank location and have worked for the bank 
+-- for at least three years. The manager will query the database to prepare a list of all employees, sorted by EmployeeID, with employees 
+-- that qualify for the training being listed first.)
 -- CASE statement
 
 USE SKS;
@@ -29,7 +32,8 @@ FROM Employee
 ORDER BY 'Training Eligible' DESC, EmployeeID ASC;
 
 -- 3
--- "User Story" (Display all chequing accounts with balances greater than $500 that have never made any loans, order result by account balance)
+-- "User Story" (A loan officer is looking to contact prospective loan customers who are already existing account holders at the SKS Bank.
+-- The loan officer wants to display all chequing accounts with balances greater than $500 that have never made any loans, order result by account balance)
 -- LEFT JOIN clause
 
 USE SKS;
@@ -42,10 +46,9 @@ ORDER BY A.Balance;
 
 
 -- 4
-
-/*
-	The bank owner wants to know how much is lost from Loans 
+/*  "User Story" (The banks's owner wants to know how much money has been lent out in the form of loans to date.)
 */
+
 USE SKS;
 
 SELECT SUM(DISTINCT Amount) - SUM(DISTINCT PrincipalAmount) AS BankTotal
@@ -59,7 +62,7 @@ WHERE Lo.BranchID = '2';
 -- 5
 
 /*
-	The Bank manager wants to know how long an employee has been with the Bank
+"User Story" (The Bank manager wants to know how long its employees have been with the Bank, since their date of hire through to the current date.)
 */
 
 USE SKS;
@@ -70,7 +73,11 @@ FROM Employee
 -- 6
 
 /*
-	Customer/Employee wants to know who the account is held by
+"User Story" (An irrate customer calls to complain about a bank employee, the customer is very upset and is yelling and refuses to give their name
+or phone number during the call, but does give their Account ID number to the bank manager during the call.  The manager was unsuccessful in calming the customer down and 
+resolving their complaint and the customer hung up the phone.  The manager would like an opportunity to remedy the situation so they will need to 
+query the SKS bank database and find out who that account (Account ID 120) is held by, and get a contact phone number to call the customer back and get
+further information and try to help the customer.
 */
 
 USE SKS;
@@ -84,7 +91,8 @@ WHERE CA.AccountID = '120';
 -- 7
 
 /*
-	The Bank wants to know who to contact for a specific Loan
+"User Story" (The bank manager asks a loan officer to contact the customer for LoanID 108 to offer them a special incentive to switch their loan balance
+to a more flexible personal line of credit.  The loan officer wants to know who to contact for that specific Loan.)
 */
 
 USE SKS;
