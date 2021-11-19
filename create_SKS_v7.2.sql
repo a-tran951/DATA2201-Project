@@ -104,7 +104,6 @@ GO
 CREATE TABLE LoanPayments(
 	LoanPaymentID INT PRIMARY KEY IDENTITY(20,1),
 	PaymentNumber INT NOT NULL,
-	BranchID INT NOT NULL,
 	LoanID INT NOT NULL,
 	AccountID INT NOT NULL,
 	Amount MONEY NOT NULL,
@@ -255,21 +254,21 @@ GO
 
 
 /**  Adding records to the Loan Payments table  **/ 
-INSERT LoanPayments (LoanID, PaymentNumber, BranchID, AccountID, Amount, PaymentDate) VALUES
-	(108, 1, 9, 101, $409.57, '2021-09-01'),
-	(104, 1, 8, 107, $200000.00, '2021-09-30'),
-	(108, 2, 9, 101, $409.57, '2021-10-01'),
-	(106, 1, 2, 102, $84.19, '2021-10-01'),
-	(102, 1, 1, 114, $500.00, '2021-10-01'),
-	(101, 1, 1, 114, $8030.00, '2021-10-15'),
-	(103, 1, 4, 108, $714.35, '2021-10-15'),
-	(104, 2, 8, 107, $200000.00, '2021-10-30'),
-	(105, 1, 3, 111, $3199.87, '2021-10-30'),
-	(106, 2, 2, 102, $84.19, '2021-11-01'),
-	(102, 2, 1, 114, $500.00, '2021-11-01'),
-	(108, 3, 9, 101, $409.57, '2021-11-01'),
-	(101, 2, 1, 114, $8030.00, '2021-11-15'),
-	(103, 3, 4, 108, $714.35, '2021-11-15')
+INSERT LoanPayments (LoanID, PaymentNumber, AccountID, Amount, PaymentDate) VALUES
+	(108, 1, 101, $409.57, '2021-09-01'),
+	(104, 1, 107, $200000.00, '2021-09-30'),
+	(108, 2, 101, $409.57, '2021-10-01'),
+	(106, 1, 102, $84.19, '2021-10-01'),
+	(102, 1, 114, $500.00, '2021-10-01'),
+	(101, 1, 114, $8030.00, '2021-10-15'),
+	(103, 1, 108, $714.35, '2021-10-15'),
+	(104, 2, 107, $200000.00, '2021-10-30'),
+	(105, 1, 111, $3199.87, '2021-10-30'),
+	(106, 2, 102, $84.19, '2021-11-01'),
+	(102, 2, 114, $500.00, '2021-11-01'),
+	(108, 3, 101, $409.57, '2021-11-01'),
+	(101, 2, 114, $8030.00, '2021-11-15'),
+	(103, 3, 108, $714.35, '2021-11-15')
 GO
 
 /**  Adding records to the CustomerAccount table  **/ 
@@ -328,9 +327,6 @@ FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID);
 
 
 /** Adding Foreign Key constraints to LoanPayments Table **/
-ALTER TABLE LoanPayments
-ADD CONSTRAINT FK_Branch_LoanPayments
-FOREIGN KEY (BranchID) REFERENCES Branch(BranchID);
 
 ALTER TABLE LoanPayments
 ADD CONSTRAINT FK_Account_LoanPayments
