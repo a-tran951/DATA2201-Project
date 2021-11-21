@@ -113,10 +113,10 @@ USE SKS;
 
 SELECT Cu.FirstName + ' ' + Cu.LastName AS AccountHolders
 FROM Customer Cu 
-JOIN CustomerAccount CA
+LEFT JOIN CustomerAccount CA
 	ON Cu.CustomerID = CA.CustomerID
-LEFT JOIN Account Ac
-	ON Cu.CustomerID = CA.CustomerID
+RIGHT JOIN Account Ac
+	ON Ac.AccountID = CA.AccountID
 RIGHT JOIN Loans Lo
 	ON Lo.AccountID = Ac.AccountID
 RIGHT JOIN LoanPayments LP
