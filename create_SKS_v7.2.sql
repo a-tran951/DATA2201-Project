@@ -38,7 +38,7 @@ CREATE TABLE Employee(
 	LastName VARCHAR (50) NOT NULL,
 	HomeAddress VARCHAR (100) NOT NULL,
 	HireDate VARCHAR (50),
-	ManagerID VARCHAR (5),
+	ManagerID INT,
 	PayRate MONEY,
 	BranchID INT, 
 	WorkLocation VARCHAR (50),
@@ -315,6 +315,18 @@ ALTER TABLE Employee
 ADD CONSTRAINT FK_Branch_Employee
 FOREIGN KEY (BranchID) REFERENCES Branch(BranchID);
 
+ALTER TABLE Employee
+ADD CONSTRAINT FK_Employee_Manager
+FOREIGN KEY (ManagerID) REFERENCES Employee(EmployeeID);
+
+/** Adding Foreign Key constraints to Customer Table **/
+ALTER TABLE Customer
+ADD CONSTRAINT FK_Customer_Banker
+FOREIGN KEY (BankerEmpID) REFERENCES Employee(EmployeeID);
+
+ALTER TABLE Customer
+ADD CONSTRAINT FK_Customer_LoanOfficer
+FOREIGN KEY (LoanOfficerEmpID) REFERENCES Employee(EmployeeID);
 
 /** Adding Foreign Key constraints to Loans Table **/
 ALTER TABLE Loans
@@ -327,7 +339,6 @@ FOREIGN KEY (AccountID) REFERENCES Account(AccountID);
 
 
 /** Adding Foreign Key constraints to LoanPayments Table **/
-
 ALTER TABLE LoanPayments
 ADD CONSTRAINT FK_Customer_LoanPayments
 FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID);
