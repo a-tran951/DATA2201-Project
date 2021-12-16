@@ -23,8 +23,7 @@
 
 /**  (Janine) Step 2. Create different set of triggers (minimum 2 numbers) to monitor the different DML and DDL activates in the database 
 
-/**  Create DML trigger that report a message/audit entry during a new customer registration and new account creation  **/
-
+/**  (Janine) Create DML trigger that report a message/audit entry during a new customer registration and new account creation  **/
 CREATE TRIGGER tg_forinsertcustomer ON Customer
  AFTER INSERT
  AS 
@@ -32,7 +31,13 @@ CREATE TRIGGER tg_forinsertcustomer ON Customer
 	SELECT * FROM inserted
  END
 
-/**  Create trigger that report a message/audit entry that confirm loan payment is made  **/
+/**  (Janine) Create DML trigger that report a message/audit entry that confirm loan payment is made  **/
+CREATE TRIGGER tg_fornewpayment ON LoanPayments
+ AFTER INSERT
+ AS 
+ BEGIN 
+	SELECT * FROM inserted
+ END
 
 /**  Create trigger that report data update during transaction performance on saving or checking account  **/
 
