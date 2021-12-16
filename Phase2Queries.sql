@@ -39,10 +39,23 @@ CREATE TRIGGER tg_fornewpayment ON LoanPayments
 	SELECT * FROM inserted
  END
 
+
+/**  (Janine) DDL trigger that disables the trigger that was made above tg_forinsertcustomer  **/ 
+
+DISABLE TRIGGER tg_forinsertcustomer
+ON Customer
+
+
 /**  Create trigger that report data update during transaction performance on saving or checking account  **/
 
 /**  Create trigger that report data read happened from a table of your choice  **/
 
+
+
+CREATE TRIGGER trigger_name
+ON SKS
+FOR 
+AS
 
 
 /**  (Connor) Step 3 Create index based on frequently used attribute for three of any table 
