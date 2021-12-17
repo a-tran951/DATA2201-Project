@@ -7,11 +7,25 @@
 	
 /**  Project Phase 2 implementation for the SKS Bank database  **/
 
-
+-- USE SKS;
 
 /**  Step 1. Implementing different functionalities using stored procedure and user defined function.  **/
 
 /**  (Connor) One of the stored procedures should be implemented with argument passing.  **/
+
+CREATE PROCEDURE sp_FindAccountHoldersByAccountID (@selectedAccount AS int)
+AS
+BEGIN
+	SELECT @selectedAccount AS 'AccountID', C.FirstName + ' ' + C.LastName AS 'Account Holders'
+	FROM Account A JOIN CustomerAccount CA 
+		ON A.AccountID = CA.AccountID
+		JOIN Customer C ON CA.CustomerID = C.CustomerID
+	WHERE A.AccountID = @selectedAccount
+	ORDER BY C.FirstName;
+END;
+
+-- Test Statement
+EXEC sp_FindAccountHoldersByAccountID 120;
 
 /**  (Janine) The other stored procedure must be handling an exception.  **/
 /**  A stored procedure to make sure an Employee is not deleted from the Employee table, 
@@ -31,7 +45,7 @@ END CATCH
 
 
 
-/**  (Janine) Step 2. Create different set of triggers (minimum 2 numbers) to monitor the different DML and DDL activates in the database 
+/**  (Janine) Step 2. Create different set of triggers (minimum 2 numbers) to monitor the different DML and DDL activates in the database **/
 
 /**  (Janine) Create DML trigger that report a message/audit entry during a new customer registration and new account creation  **/
 CREATE TRIGGER tg_forinsertcustomer ON Customer
@@ -73,7 +87,25 @@ Replace the default cluster index with non-key attribute for one table. If you u
 Create Composite clustered index for one of the table by removing the default clustered index. . If you used GUI please provide details on which table you implemented it 
 Create non clustered composite index for one of the table you have. If you used GUI please provide details on which table you implemented it  **/ 
 
+---- Non-key Attribute
+-- 
 
+
+
+---- Composite Clustered Index
+-- Remove default clustered index
+DROP INDEX PK_LoanPaym_5BA74D5C015CC961
+ON LoanPayments;
+
+-- Create index
+CREATE CLUSTERED INDEX Ix_LoanPayment_LoanPaymentID_Amount
+ON LoanPayments(LoanPaymentID ASC, Amount ASC);
+
+
+---- Composite Nonclustered Index
+-- Create index
+CREATE NONCLUSTERED INDEX Ix_Employee_FirstName_LastName
+ON Employee(FirstName, LastName);
 
 /**  (Alex) Step 4. Create different level of users and assign appropriate privilege. 
 A minimum of 2 user should be there.   
@@ -86,9 +118,9 @@ Create a user as accountant_yourID and password accountant. When you login with 
 First part: Set the recovery model for your database as full recovery model. Second part: Take a full backup of your database.  **/
 
 /**  First part: Set the recovery model of the SKS database from simple to full  **/
-USE [master]
+USE master
 GO
-ALTER DATABASE [SKS] SET RECOVERY FULL WITH NO_WAIT
+ALTER DATABASE SKS SET RECOVERY FULL WITH NO_WAIT
 GO
 
 /**  Second part: Perform a full backup  **/
