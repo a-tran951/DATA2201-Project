@@ -14,6 +14,16 @@
 /**  (Connor) One of the stored procedures should be implemented with argument passing.  **/
 
 /**  (Janine) The other stored procedure must be handling an exception.  **/
+/**  A stored procedure to make sure an Employee is not deleted from the Employee table, 
+when that Employee is listed as a Foreign Key in the Customer Table (under column: BankerEmpID)  **/
+USE SKS
+BEGIN TRY
+DELETE FROM [SKS].[dbo].[Employee] Where [EmployeeID] = 113
+END TRY
+BEGIN CATCH
+SELECT ERROR_MESSAGE() AS [Error Message]
+END CATCH
+
 
 /**  (Alex) At least 1 user defined function - this should not be a stored procedure, create your own function, 
      don’t use a pre-defined function that is a stored procedure for this we make our own.   
