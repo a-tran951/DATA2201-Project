@@ -43,7 +43,18 @@ END CATCH
      don’t use a pre-defined function that is a stored procedure for this we make our own.   
      EXTRA Functions if allowed by time  **/
 
-
+CREATE FUNCTION bankBalance()
+RETURNS money
+BEGIN
+RETURN (SELECT SUM(DISTINCT Amount) - SUM(DISTINCT PrincipalAmount) AS BankTotal
+FROM AccountTransactions AcTr
+JOIN Loans Lo
+	ON Lo.BranchID = AcTr.BranchID
+JOIN LoanPayments LP
+	ON LP.LoanID = Lo.LoanID
+WHERE Lo.BranchID = '2'
+)
+END;
 
 /**  (Janine) Step 2. Create different set of triggers (minimum 2 numbers) to monitor the different DML and DDL activates in the database **/
 
@@ -80,6 +91,7 @@ CREATE TRIGGER trigger_name
 ON SKS
 FOR 
 AS
+
 
 
 /**  (Connor) Step 3 Create index based on frequently used attribute for three of any table 
