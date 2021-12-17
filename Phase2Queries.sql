@@ -64,42 +64,27 @@ END;
 
 SELECT dbo.bankBalance(1)
 
-/**  (Janine) Step 2. Create different set of triggers (minimum 2 numbers) to monitor the different DML and DDL activates in the database **/
-
-/**  (Janine) Create DML trigger that report a message/audit entry during a new customer registration and new account creation  **/
+/**  (Janine) Step 2. Create different set of triggers to monitor DML and DDL activates in the database **/
+/**  (Janine) 1st trigger (DML) A trigger that report a message/audit entry during a new customer registration  **/
 CREATE TRIGGER tg_forinsertcustomer ON Customer
- AFTER INSERT
- AS 
- BEGIN 
-	SELECT * FROM inserted
- END
+AFTER INSERT
+AS 
+BEGIN 
+  SELECT * FROM inserted
+END
 
-/**  (Janine) Create DML trigger that report a message/audit entry that confirm loan payment is made  **/
-CREATE TRIGGER tg_fornewpayment ON LoanPayments
- AFTER INSERT
- AS 
- BEGIN 
-	SELECT * FROM inserted
- END
+/**  Test statement  **/
+INSERT INTO Customer 
+VALUES ('Adrian', 'Bowles', '3804 6 Avenue SW Calgary', '587-232-7717', 110, NULL)
 
 
-/**  (Janine) DDL trigger that disables the trigger that was made above tg_forinsertcustomer  **/ 
-
+/**  (Janine) 2nd trigger (DDL) A trigger that disables the trigger that was made above tg_forinsertcustomer  **/ 
 DISABLE TRIGGER tg_forinsertcustomer
 ON Customer
 
-
-/**  Create trigger that report data update during transaction performance on saving or checking account  **/
-
-/**  Create trigger that report data read happened from a table of your choice  **/
-
-
-
-CREATE TRIGGER trigger_name
-ON SKS
-FOR 
-AS
-
+/** Test statement  **/
+INSERT INTO Customer 
+VALUES ('Patrice', 'Kane', '810 Erlton Avenue SW Calgary', '403-229-1195', 101, NULL)
 
 
 /**  (Connor) Step 3 Create index based on frequently used attribute for three of any table 
