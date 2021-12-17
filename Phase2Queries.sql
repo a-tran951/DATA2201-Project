@@ -109,24 +109,38 @@ Create Composite clustered index for one of the table by removing the default cl
 Create non clustered composite index for one of the table you have. If you used GUI please provide details on which table you implemented it  **/ 
 
 ---- Non-key Attribute
--- 
+-- Change PK constraint from clustered to nonclustered
+ALTER TABLE Branch
+DROP CONSTRAINT PK__Branch__A1682FA557F82782 WITH (ONLINE = OFF)
+GO
 
+ALTER TABLE Branch
+ADD CONSTRAINT PK__Branch__A1682FA557F82782 PRIMARY KEY NONCLUSTERED (BranchID ASC)
+GO
+
+-- Create index
+CREATE CLUSTERED INDEX Ix_BranchName
+ON Branch(BranchName ASC)
+GO
 
 
 ---- Composite Clustered Index
--- Remove default clustered index
-DROP INDEX PK_LoanPaym_5BA74D5C015CC961
-ON LoanPayments;
+-- Disable PK constraint 
+ALTER TABLE LoanPayments
+DROP CONSTRAINT PK__LoanPaym__5BA74D5C015CC961 WITH (ONLINE = OFF)
+GO
 
 -- Create index
 CREATE CLUSTERED INDEX Ix_LoanPayment_LoanPaymentID_Amount
-ON LoanPayments(LoanPaymentID ASC, Amount ASC);
+ON LoanPayments(LoanPaymentID ASC, Amount ASC)
+GO
 
 
 ---- Composite Nonclustered Index
 -- Create index
 CREATE NONCLUSTERED INDEX Ix_Employee_FirstName_LastName
-ON Employee(FirstName, LastName);
+ON Employee(FirstName, LastName)
+GO
 
 /**  (Alex) Step 4. Create different level of users and assign appropriate privilege. 
 A minimum of 2 user should be there.   
