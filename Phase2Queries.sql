@@ -34,7 +34,7 @@ when that Employee is listed as a Foreign Key in the Customer Table (under colum
 CREATE PROCEDURE sp_ExceptionDeleteEmployeeID (@EmployeeID AS int)
 AS
 BEGIN TRY
-DELETE FROM [SKS].[dbo].[Employee] Where [EmployeeID] = ()
+DELETE FROM [SKS].[dbo].[Employee] Where [EmployeeID] = @EmployeeID
 END TRY
 BEGIN CATCH
 SELECT ERROR_MESSAGE() AS [Error Message]
