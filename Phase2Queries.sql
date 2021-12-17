@@ -49,7 +49,8 @@ EXEC sp_ExceptionDeleteEmployeeID 113;
      don’t use a pre-defined function that is a stored procedure for this we make our own.   
      EXTRA Functions if allowed by time  **/
 
-CREATE FUNCTION bankBalance()
+	 DROP FUNCTION bankBalance
+CREATE FUNCTION bankBalance(@BranchID as int)
 RETURNS money
 BEGIN
 RETURN (SELECT SUM(DISTINCT Amount) - SUM(DISTINCT PrincipalAmount) AS BankTotal
@@ -58,9 +59,11 @@ JOIN Loans Lo
 	ON Lo.BranchID = AcTr.BranchID
 JOIN LoanPayments LP
 	ON LP.LoanID = Lo.LoanID
-WHERE Lo.BranchID = '2'
+WHERE Lo.BranchID = @BranchID
 )
 END;
+
+SELECT dbo.bankBalance(1)
 
 /**  (Janine) Step 2. Create different set of triggers (minimum 2 numbers) to monitor the different DML and DDL activates in the database **/
 
