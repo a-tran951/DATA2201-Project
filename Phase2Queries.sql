@@ -25,7 +25,7 @@ BEGIN
 END;
 
 -- Test Statement
-EXEC sp_FindAccountHoldersByAccountID 120;
+EXEC sp_FindAccountHoldersByAccountID 110;
 
 /**  (Janine) The other stored procedure must be handling an exception.  **/
 /**  A stored procedure to make sure an Employee is not deleted from the Employee table, 
@@ -93,6 +93,23 @@ Create Composite clustered index for one of the table by removing the default cl
 Create non clustered composite index for one of the table you have. If you used GUI please provide details on which table you implemented it  **/ 
 
 ---- Non-key Attribute
+-- Disable FK constraints
+ALTER TABLE Employee
+DROP CONSTRAINT FK_Branch_Employee
+GO
+
+ALTER TABLE Loans
+DROP CONSTRAINT FK_Branch_Loans
+GO
+
+ALTER TABLE Account
+DROP CONSTRAINT FK_Branch_Account
+GO
+
+ALTER TABLE AccountTransactions
+DROP CONSTRAINT FK_Branch_AccountTransactions
+GO
+
 -- Change PK constraint from clustered to nonclustered
 ALTER TABLE Branch
 DROP CONSTRAINT PK__Branch__A1682FA557F82782 WITH (ONLINE = OFF)
@@ -105,6 +122,27 @@ GO
 -- Create index
 CREATE CLUSTERED INDEX Ix_BranchName
 ON Branch(BranchName ASC)
+GO
+
+-- Re-Enable FK constraints
+ALTER TABLE Employee
+ADD CONSTRAINT FK_Branch_Employee
+FOREIGN KEY (BranchID) REFERENCES Branch (BranchID)
+GO
+
+ALTER TABLE Loans
+ADD CONSTRAINT FK_Branch_Loans
+FOREIGN KEY (BranchID) REFERENCES Branch (BranchID)
+GO
+
+ALTER TABLE Account
+ADD CONSTRAINT FK_Branch_Account
+FOREIGN KEY (BranchID) REFERENCES Branch (BranchID)
+GO
+
+ALTER TABLE AccountTransactions
+ADD CONSTRAINT FK_Branch_AccountTransactions
+FOREIGN KEY (BranchID) REFERENCES Branch (BranchID)
 GO
 
 
